@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 944575639}
   - component: {fileID: 944575638}
   m_Layer: 0
-  m_Name: TestUltils
+  m_Name: MapSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,10 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a074890bc8cd44b8d2ba42e8a6a53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCircleRadius: 2
-  roomWidthRange: {x: 3, y: 7}
-  roomHeightRange: {x: 3, y: 7}
-  roomNumber: 2
+  spawnCircleRadius: 5
+  roomWidthRange: {x: 15, y: 20}
+  roomHeightRange: {x: 10, y: 20}
+  roomNumber: 20
+  egdeOffset: 7
 --- !u!4 &944575639
 Transform:
   m_ObjectHideFlags: 0
