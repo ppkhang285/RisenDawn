@@ -4,18 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TilePainter : MonoBehaviour
+public class TilePainter 
 {
     
 
-    [SerializeField] private TileBase tile;
-    [SerializeField] private Tilemap tilemap;
+    private TileBase tile;
+    private Tilemap tilemap;
 
-    public static TilePainter Instance { get; private set; }
-
-    private void Awake()
+    public TilePainter(Tilemap tilemap, TileBase tile)
     {
-        Instance = this;
+        this.tilemap = tilemap;
+        this.tile = tile;
     }
 
 
@@ -23,7 +22,7 @@ public class TilePainter : MonoBehaviour
     public void PaintRoomFoundation(RoomInfo room)
     {
         Vector3Int start = new Vector3Int(room.position.x, room.position.y);
-        Vector3Int end = start + new Vector3Int(room.width, room.height);
+        Vector3Int end = start + new Vector3Int(room.width, -room.height);
 
 
         BoxFill(tilemap, tile, start, end);

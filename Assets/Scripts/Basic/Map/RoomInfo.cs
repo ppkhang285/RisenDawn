@@ -37,5 +37,14 @@ public class RoomInfo
     {
         return (float)center.y - height / 2;
     }
+
+    /// <summary>
+    /// Get Center from Position
+    /// </summary>
+    /// <returns></returns>
+    public Vector2 Center()
+    {
+        return position - (Vector2.up * height/2) + (Vector2.right * width/2);
+    }
 }
 

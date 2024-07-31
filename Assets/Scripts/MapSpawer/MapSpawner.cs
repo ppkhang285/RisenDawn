@@ -3,20 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapSpawner : MonoBehaviour
-{
-    public MapConfig mapConfig;
+public class MapSpawner
+{ 
+    private MapConfig mapConfig;
 
     // Vertices and Edges for minimap / terminal
-    private List<MVertex> vertices;
-    private List<MEdge> edges;
-
+    public List<MVertex> vertices;
+    public List<MEdge> edges;
+    public RoomInfo startRoom;
 
     // Room list for spawn in world space
-    private List<RoomInfo> roomList;
-    private Dictionary<MVertex, RoomInfo> vertexToRoomDic;
+    public List<RoomInfo> roomList;
+    public Dictionary<MVertex, RoomInfo> vertexToRoomDic;
     private int roomNumber;
-    private RoomInfo[,] grid;
     private float maxRoomWidth;
     private float maxRoomHeight;
     private float gridWidth;
@@ -24,23 +23,18 @@ public class MapSpawner : MonoBehaviour
     private float roomOffset = 12f;
 
     private MapSpawnUtils mapSpawnUtils;
+    private TilePainter tilePainter;
+    
 
-
-
-    private void Start()
+    public MapSpawner(MapConfig mapConfig, TilePainter tilePainter)
     {
-        Setup();
-    }
-    private void Setup()
-    {
+        this.mapConfig = mapConfig;
+        this.tilePainter = tilePainter;
         mapSpawnUtils = new MapSpawnUtils();
-
-          
     }
 
 
-    [Button]
-    private void SpawnMap()
+    public void SpawnMap()
     {
         GetSpawnData();
         DrawWorldMap();
@@ -68,7 +62,9 @@ public class MapSpawner : MonoBehaviour
 
             room.position = Vector2Int.RoundToInt(worldPos);
 
-            TilePainter.Instance.PaintRoomFoundation(room);
+
+
+            tilePainter.PaintRoomFoundation(room);
 
             gridX++;
 
@@ -92,6 +88,8 @@ public class MapSpawner : MonoBehaviour
         float sqrt = Mathf.Sqrt(roomNumber);
         gridHeight = Mathf.FloorToInt(sqrt);
         gridWidth = Mathf.CeilToInt((float)roomNumber / gridHeight);
+
+        startRoom = roomList[0];
     }
 
     /// <summary>

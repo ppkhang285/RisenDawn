@@ -44,3 +44,6 @@ TagManager:
   - name: GroundWall
     uniqueID: 3724420001
     locked: 0
+  - name: Entity
+    uniqueID: 73548959
+    locked: 0
