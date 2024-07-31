@@ -5,11 +5,23 @@ using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
 {
-    public LevelManager levelManager;
-    public static TilePainter tilePainter;
-    public GameObject playerPrefab;
-    
+    public static GameplayManager Instance { get; private set; }
 
+    public LevelManager levelManager;
+    public CameraController cameraController;
+
+    public static TilePainter tilePainter;
+
+
+    public GameObject playerPrefab;
+    public GameObject player;
+
+    public int testRoom;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -22,11 +34,23 @@ public class GameplayManager : MonoBehaviour
     }
 
     [Button]
-    private void Test()
+    private void GenerateLevel()
     {
         levelManager.GenerateMap();
-        Instantiate(playerPrefab, levelManager.startRoom.Center(), Quaternion.identity);
-        Debug.Log(levelManager.startRoom.position);
+
+        player = Instantiate(playerPrefab, levelManager.startRoom.Center(), Quaternion.identity);
+
+        cameraController.ChangeRoom(levelManager.startRoom);
         
+    }
+
+    [Button]
+    private void Teleport()
+    {
+        RoomInfo room = levelManager.roomList[testRoom];
+
+        player.transform.position = room.Center();
+        
+        cameraController.ChangeRoom(room); 
     }
 }

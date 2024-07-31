@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29153a9c894b37f45a6a7575b9740bd5, type: 3}
   m_Name: GeneralMapConfig
   m_EditorClassIdentifier: 
-  roomWidthRange: {x: 20, y: 20}
-  roomHeightRange: {x: 10, y: 10}
+  roomWidthRange: {x: 30, y: 30}
+  roomHeightRange: {x: 20, y: 20}
   roomNumber: 10
